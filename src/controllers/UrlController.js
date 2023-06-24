@@ -4,6 +4,19 @@ import Url from "../models/Url.js";
 import generateId from "../utils/generateId.js";
 
 class UrlController {
+  async list(req, res, next) {
+    try {
+      const urlList = await Url.find();
+
+      if (urlList.length == 0)
+        throw new NotFoundError("URL not found.");
+
+      return res.status(200).json({ url_list: urlList, code: 200 });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async generate(req, res, next) {
     try {
       const { url } = req.body;
@@ -41,6 +54,21 @@ class UrlController {
 
       return res.status(200).json({ url: url[0].value });
       // return res.status(200).redirect(url[0].value);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async remove(req, res, next) {
+    const { id } = req.params;
+
+    try {
+      if (!id)
+        throw new RequestError("Invalid ID.");
+
+      const result = await Url.findOneAndDelete({ shortener: id });
+
+      return res.status(200).json({ result });
     } catch (error) {
       next(error);
     }

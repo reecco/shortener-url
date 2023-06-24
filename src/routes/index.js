@@ -1,10 +1,14 @@
 import { Router } from "express";
-import UrlController from "../controllers/index.js";
+
+import UrlController from "../controllers/UrlController.js";
+import { authorization as auth } from "../middlewares/index.js";
 
 const router = Router();
 
 router
-  .get('/:id', UrlController.access)
-  .post("/generate", UrlController.generate);
+  .get("/list", auth, UrlController.list)
+  .get("/:id", UrlController.access)
+  .post("/generate", UrlController.generate)
+  .delete("/:id", UrlController.remove);
 
 export default router;

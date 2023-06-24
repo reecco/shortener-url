@@ -8,12 +8,14 @@ import { errors } from "./middlewares/index.js";
 const app = express();
 
 app.use(
+  "/v1",
   express.json(),
   router,
   errors
 );
 
 app.listen(env.PORT, () => {
+  console.log(new Date().toLocaleTimeString());
   Database.start(env.CONNECTION);
   console.log(`http://localhost:${env.PORT}`);
 });
