@@ -8,7 +8,7 @@ const generateId = async (id = "") => {
     const isValid = await validateId(id);
 
     if (isValid.length != 0)
-      return generateId(id += characters.charAt(index));
+      return generateId(id = "");
 
     return id;
   }

@@ -9,7 +9,11 @@ const UrlSchema = new Schema({
     type: String,
     required: true
   },
-  timestamp: {
+  created_at: {
+    type: Number,
+    required: true
+  },
+  expires_in: {
     type: Number,
     required: true
   }

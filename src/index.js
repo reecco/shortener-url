@@ -8,7 +8,7 @@ import { errors } from "./middlewares/index.js";
 const app = express();
 
 app.use(
-  "/v1",
+  "/api/v1",
   express.json(),
   router,
   errors

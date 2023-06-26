@@ -7,7 +7,7 @@ import UnauthorizedError from "../error/UnauthorizedError.js";
 
 export function errors(error, req, res, next) {
   if (error instanceof BaseError)
-    return error.sendResponse(res);
+    return error.send(res);
 
   if (error instanceof mongoose.Error.CastError)
     return new BaseError("Invalid ID: " + error).send(res);

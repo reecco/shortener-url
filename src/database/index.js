@@ -9,7 +9,7 @@ class Database {
       }
 
       await mongoose.connect(connection);
-      console.log("Connected to database.")
+      console.log("Connected to the database.")
     } catch (error) {
       console.log(`${error.name}: ${error.message}`);
     }

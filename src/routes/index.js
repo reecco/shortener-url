@@ -9,6 +9,6 @@ router
   .get("/list", auth, UrlController.list)
   .get("/:id", UrlController.access)
   .post("/generate", UrlController.generate)
-  .delete("/:id", UrlController.remove);
+  .delete("/:id", auth, UrlController.remove);
 
 export default router;
